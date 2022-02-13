@@ -14,7 +14,6 @@ def directors(request):
     data = AfishaForm(director, many=True).data
     return Response(data=data)
 
-
 @api_view(['GET'])
 def directors_detail(request, id):
     try:
@@ -47,7 +46,6 @@ def reviews(request):
     data = AfishaForm2(review, many=True).data
     return Response(data=data)
 
-
 @api_view(['GET'])
 def reviews_detail(request, id):
     try:
@@ -57,5 +55,3 @@ def reviews_detail(request, id):
                         data={'message': 'Reviews not found'})
     data = AfishaForm2(review, many=False).data
     return Response(data=data)
-
-
