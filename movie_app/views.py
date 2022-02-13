@@ -14,6 +14,7 @@ def directors():
     data = AfishaForm(director, many=True).data
     return Response(data=data)
 
+
 @api_view(['GET'])
 def directors_detail(id):
     try:
