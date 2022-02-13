@@ -9,14 +9,14 @@ from movie_app.models import Review
 from rest_framework import status
 
 @api_view(['GET'])
-def directors():
+def directors(request):
     director = Director.objects.all()
     data = AfishaForm(director, many=True).data
     return Response(data=data)
 
 
 @api_view(['GET'])
-def directors_detail(id):
+def directors_detail(request, id):
     try:
         director = Director.objects.get(id=id)
     except Director:
@@ -26,13 +26,13 @@ def directors_detail(id):
     return Response(data=data)
 
 @api_view(['GET'])
-def movies():
+def movies(request):
     movie = Movie.objects.all()
     data = AfishaForm1(movie, many=True).data
     return Response(data=data)
 
 @api_view(['GET'])
-def movies_detail(id):
+def movies_detail(request, id):
     try:
         movie = Movie.objects.get(id=id)
     except Movie:
@@ -42,14 +42,14 @@ def movies_detail(id):
     return Response(data=data)
 
 @api_view(['GET'])
-def reviews():
+def reviews(request):
     review = Review.objects.all()
     data = AfishaForm2(review, many=True).data
     return Response(data=data)
 
 
 @api_view(['GET'])
-def reviews_detail(id):
+def reviews_detail(request, id):
     try:
         review = Review.objects.get(id=id)
     except Review:
