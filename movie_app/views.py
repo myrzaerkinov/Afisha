@@ -93,7 +93,7 @@ def reviews(request):
                         status=status.HTTP_201_CREATED)
 
 
-@api_view(['GET', 'PUT', 'POST'])
+@api_view(['GET', 'PUT', 'DELETE'])
 def reviews_detail(request, id):
     try:
         review = Review.objects.get(id=id)
