@@ -45,15 +45,17 @@ def movies(request):
         movies = Movie.objects.all()
         data = MovieSerializer(movies, many=True).data
         return Response(data=data)
-    elif request.data == 'POST':
+    elif request.method == 'POST':
         print(request.data)
         title = request.data.get('title')
         description = request.data.get('description')
         duration = request.data.get('duration')
         director = request.data.get('director')
-        movie = Movie.objects.create(title=title, description=description,
-                                     duration=duration, director=director)
-        return Response(data=MovieSerializer(movie).data,
+        director_id = request.data.get('director_id')
+        movies = Movie.objects.create(title=title, description=description,
+                                      director=director, director_id=director_id ,
+                                      duration=duration)
+        return Response(data=MovieSerializer(movies).data,
                         status=status.HTTP_201_CREATED)
 
 
@@ -77,6 +79,7 @@ def movies_detail(request, id):
         movie.director = request.data.get('director')
         movie.save()
         return Response(data=MovieSerializer(movie).data)
+
 ########################################################################
 @api_view(['GET', 'POST'])
 def reviews(request):
@@ -88,7 +91,8 @@ def reviews(request):
         print(request.data)
         text = request.data.get('text')
         stars = request.data.get('stars')
-        review = Review.objects.create(text=text, stars=stars)
+        movie_id = request.data.get('movie_id')
+        review = Review.objects.create(text=text, stars=stars, movie_id=movie_id)
         return Response(data=ReviewSerializer(review).data,
                         status=status.HTTP_201_CREATED)
 

@@ -7,15 +7,15 @@ class Director(models.Model):
     def __str__(self):
         return self.name
 
-@property
-def all_movies(self):
-    movies = Movie.objects.filter(movie=self)
-    return [{'id': i.id, 'text': i.text} for i in movies]
+    @property
+    def all_movies(self):
+        movies = Movie.objects.filter(movie=self)
+        return [{'id': i.id, 'text': i.text} for i in movies]
 
 
 class Movie(models.Model):
     objects = None
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, null=True)
     description = models.TextField(null=True, blank=True)
     duration = models.CharField(max_length=200)
     director = models.ForeignKey(Director,
