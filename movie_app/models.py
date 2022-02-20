@@ -7,6 +7,12 @@ class Director(models.Model):
     def __str__(self):
         return self.name
 
+@property
+def all_movies(self):
+    movies = Movie.objects.filter(movie=self)
+    return [{'id': i.id, 'text': i.text} for i in movies]
+
+
 class Movie(models.Model):
     objects = None
     title = models.CharField(max_length=100)
@@ -19,8 +25,15 @@ class Movie(models.Model):
         return self.director.name
 
     @property
-    def movies_count(self):
-        return self.movies.all().count()
+    def rating(self):
+        reviews = Review.objects.filter(movie=self)
+        sum_ = 0
+        for i in reviews:
+            sum_ += int(i.stars)
+        try:
+            return sum_/reviews.count()
+        except:
+            return 0
 
     @property
     def all_movies(self):
@@ -31,7 +44,6 @@ class Movie(models.Model):
     def all_reviews(self):
         reviews = Review.objects.filter(movie=self)
         return [{'id': i.id, 'text': i.text} for i in reviews]
-
 
 class Review(models.Model):
     RATING_REVIEW = (
