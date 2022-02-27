@@ -14,4 +14,5 @@ urlpatterns = [
     path('api/v1/register/', views.registration),
     path('api/v1/login/', views.authorization),
 
+
 ]

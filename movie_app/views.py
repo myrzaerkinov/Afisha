@@ -13,7 +13,7 @@ from rest_framework import status
 from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import User
-from rest_framework.permissions import IsAuthenticated
+
 
 @api_view(['GET', 'POST'])
 def directors(request):
