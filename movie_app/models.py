@@ -29,7 +29,7 @@ class Movie(models.Model):
         reviews = Review.objects.filter(movie=self)
         sum_ = 0
         for i in reviews:
-            sum_ += int(i.stars)
+            sum_ += int()
         try:
             return sum_/reviews.count()
         except:

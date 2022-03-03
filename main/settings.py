@@ -40,11 +40,17 @@ INSTALLED_APPS = [
     'rest_framework',
     'movie_app',
     'rest_framework.authtoken',
+    'main_class',
+    'django_filters'
 ]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication'
+    ],
+    'PAGE_SIZE': 3,
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend'
     ]
 }
 
