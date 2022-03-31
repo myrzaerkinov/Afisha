@@ -28,6 +28,7 @@ class MovieSerializer(serializers.ModelSerializer):
         serializer = ReviewSerializer(Review.objects.filter(movie=movie), many=True)
         return serializer.data
 
+
 class MovieCreateUpdateSerializer(serializers.Serializer):
     title = serializers.CharField(min_length=6, max_length=16)
     description = serializers.CharField()

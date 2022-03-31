@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Avg
 
 class Director(models.Model):
     objects = None
@@ -26,10 +27,12 @@ class Movie(models.Model):
 
     @property
     def rating(self):
+        # return Review.objects.filter(movie_id=self).aggregate(Avg('stars'))
+
         reviews = Review.objects.filter(movie=self)
         sum_ = 0
         for i in reviews:
-            sum_ += int()
+            sum_ += int(i.stars)
         try:
             return sum_/reviews.count()
         except:
