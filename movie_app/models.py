@@ -61,7 +61,7 @@ class Review(models.Model):
     movie = models.ForeignKey(Movie,
                               on_delete=models.CASCADE,
                               related_name="review")
-    stars = models.CharField(choices=RATING_REVIEW,
+    stars = models.IntegerField(choices=RATING_REVIEW,
                              max_length=100,
                              null=True, blank=True)
     def __str__(self):
